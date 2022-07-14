@@ -10,11 +10,12 @@ public class Pais {
     private double dimensaoQuilometroQuadrado;
     private Set<Pais> vizinhos = new HashSet<>();
 
-    public Pais() {
+    public Pais(String codigoIso, String nome, int populacao, double dimensaoQuilometroQuadrado) {
         this.codigoIso = codigoIso;
         this.nome = nome;
         this.populacao = populacao;
         this.dimensaoQuilometroQuadrado = dimensaoQuilometroQuadrado;
+        this.vizinhos = vizinhos;
     }
 
     public String getCodigoIso() {
@@ -57,7 +58,25 @@ public class Pais {
         this.vizinhos = vizinhos;
     }
 
-    public void adicionarVizinho(Pais p1) {
-        vizinhos.add(p1);
+    public double calcularDensidadePopulacional() {
+        return this.getPopulacao() / this.getDimensaoQuilometroQuadrado();
     }
+    public void adicionarVizinho(Pais p1) {
+        this.vizinhos.add(p1);
+        p1.vizinhos.add(this);
+    }
+
+    public void listarPaisesVizinhos() {
+        for (Pais pais : vizinhos) {
+            System.out.println(pais.getNome());
+        }
+    }
+    public boolean paisVizinho(Pais p1) {
+        if (this.vizinhos.contains(p1)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
