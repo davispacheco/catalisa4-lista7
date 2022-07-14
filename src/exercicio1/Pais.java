@@ -18,6 +18,29 @@ public class Pais {
         this.vizinhos = vizinhos;
     }
 
+    public double calcularDensidadePopulacional() {
+        return this.getPopulacao() / this.getDimensaoQuilometroQuadrado();
+    }
+
+    public void adicionarVizinho(Pais p1) {
+        this.vizinhos.add(p1);
+        p1.vizinhos.add(this);
+    }
+
+    public void listarPaisesVizinhos() {
+        for (Pais pais : vizinhos) {
+            System.out.println(pais.getNome());
+        }
+    }
+
+    public boolean paisVizinho(Pais p1) {
+        if (this.vizinhos.contains(p1)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public String getCodigoIso() {
         return codigoIso;
     }
@@ -56,27 +79,6 @@ public class Pais {
 
     public void setVizinhos(Set<Pais> vizinhos) {
         this.vizinhos = vizinhos;
-    }
-
-    public double calcularDensidadePopulacional() {
-        return this.getPopulacao() / this.getDimensaoQuilometroQuadrado();
-    }
-    public void adicionarVizinho(Pais p1) {
-        this.vizinhos.add(p1);
-        p1.vizinhos.add(this);
-    }
-
-    public void listarPaisesVizinhos() {
-        for (Pais pais : vizinhos) {
-            System.out.println(pais.getNome());
-        }
-    }
-    public boolean paisVizinho(Pais p1) {
-        if (this.vizinhos.contains(p1)) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
 }
